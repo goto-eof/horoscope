@@ -11,11 +11,11 @@ import javax.transaction.Transactional;
 import org.andreidodu.horoscope.entities.Forecast;
 import org.andreidodu.horoscope.repository.ForecastDao;
 import org.andreidodu.horoscope.repository.ForecastSignDao;
-import org.andreidodu.horoscope.repository.SignDao;
 import org.andreidodu.horoscope.util.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import liquibase.repackaged.org.apache.commons.lang3.StringUtils;
@@ -31,7 +31,6 @@ public class ForecastServiceImpl implements ForecastService {
 	private static final String CATEGORY_MONEY = "money";
 
 	private static final List<String> HOROSCOPE_CATEGORIES = Arrays.asList(CATEGORY_HEALTH, CATEGORY_LOVE, CATEGORY_MONEY);
-
 	private static final List<String> ZODIAC_SIGNS = Arrays.asList("aries", "taurus", "gemini", "cancer", "leo", "virgo", "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces");
 
 	@Autowired
@@ -41,7 +40,7 @@ public class ForecastServiceImpl implements ForecastService {
 	private ForecastSignDao forecastSignDao;
 
 	@Autowired
-	private SignDao signDao;
+	private Environment env;
 
 	@Override
 	public String retrieveBySing(String sign) {
@@ -79,8 +78,7 @@ public class ForecastServiceImpl implements ForecastService {
 		LOG.debug("Health: {}", idsByCategoryHealth);
 		LOG.debug("Love: {}", idsByCategoryLove);
 		LOG.debug("Money: {}", idsByCategoryMoney);
-		
-		
+
 		Long randomIdHealt = idsByCategoryHealth.get(ThreadLocalRandom.current().nextInt(0, idsByCategoryHealth.size()));
 		Long randomIdLove = idsByCategoryLove.get(ThreadLocalRandom.current().nextInt(0, idsByCategoryLove.size()));
 		Long randomIdMoney = idsByCategoryMoney.get(ThreadLocalRandom.current().nextInt(0, idsByCategoryMoney.size()));
@@ -96,7 +94,10 @@ public class ForecastServiceImpl implements ForecastService {
 		List<Forecast> forecasts = this.forecastSignDao.retrieveRecordsForInterval(today, DateUtils.addDays(today, 1), HOROSCOPE_CATEGORIES);
 		StringBuilder sb = new StringBuilder();
 		for (Forecast forecast : forecasts) {
-			sb.append(forecast.getCategory());
+			String key = this.env.getProperty("language") + ".categories." + forecast.getCategory();
+			String value = this.env.getProperty(key);
+			LOG.debug("KEY: [{}], VALUE: [{}]", key, value);
+			sb.append(value);
 			sb.append(": ");
 			sb.append(forecast.getPhrase());
 			sb.append(" ");
@@ -105,7 +106,12 @@ public class ForecastServiceImpl implements ForecastService {
 	}
 
 	private void validateSign(String sign) {
-		if (!ZODIAC_SIGNS.contains(StringUtils.lowerCase(sign))) {
+		List<String> translatedSigns = new ArrayList<>();
+		String appLanguage = this.env.getProperty("language");
+		ZODIAC_SIGNS.forEach(signx -> {
+			translatedSigns.add(StringUtils.lowerCase(this.env.getProperty(appLanguage + ".signs." + signx)));
+		});
+		if (!translatedSigns.contains(StringUtils.lowerCase(sign))) {
 			throw new RuntimeException("Oooooops, badabuuuum!");
 		}
 	}
