@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/horoscope?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Rome
+    username: horoscope
+    password: password
+  liquibase:
+    change-log: classpath:/database/db.changelog.xml
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        format_sql: false
+    show-sql: true
+
+        
+server:
+  port: 8080              
+  
+  
+  
+logging:
+  file:
+    path: ./horoscope-logs
+    name: ${logging.file.path}/server.log
+  level:
+    org.andreidodu: DEBUG
+    root: INFO
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"    
