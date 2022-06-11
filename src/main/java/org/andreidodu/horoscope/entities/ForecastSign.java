@@ -16,14 +16,12 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "tc002_forecast_sign", uniqueConstraints = { @UniqueConstraint(columnNames = { "tc001_forecast_seq", "tp001_sign_seq" }) })

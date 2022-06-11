@@ -17,14 +17,12 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "tp001_sign", uniqueConstraints = { @UniqueConstraint(columnNames = { "tp001_sign_name" }) })
@@ -41,7 +39,7 @@ public class Sign extends TableCommons {
 	private Long id;
 
 	@Column(name = "tp001_sign_name", length = 255, nullable = false)
-	private String category;
+	private String signName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "sign")
 	// @FilterJoinTable(name = "playerMinId", condition = "players_id >= :minId")

@@ -18,14 +18,12 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "tc001_forecast", uniqueConstraints = { @UniqueConstraint(columnNames = { "tc001_phrase", "tc001_category" }) })
@@ -34,7 +32,7 @@ import lombok.Setter;
 @AttributeOverride(name = "lastModifiedDate", column = @Column(name = "tc001_update_date"))
 @SQLDelete(sql = "UPDATE tc001_forecast SET tc001_active = 0 WHERE tc001_forecast_seq = ? AND tc001_version = ?")
 @Where(clause = "tc001_active = 1")
-public class Forecast extends TableCommons implements Serializable{
+public class Forecast extends TableCommons implements Serializable {
 
 	private static final long serialVersionUID = 2602205456023526563L;
 

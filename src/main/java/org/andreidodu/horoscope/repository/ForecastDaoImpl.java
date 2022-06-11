@@ -1,5 +1,7 @@
 package org.andreidodu.horoscope.repository;
 
+import java.util.List;
+
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -34,6 +36,18 @@ public class ForecastDaoImpl extends CommonDao implements ForecastDao {
 		Session session = this.entityManager.unwrap(Session.class);
 		session.persist(forecast);
 		LOG.debug("Saved successfully: {}", forecast);
+	}
+
+	@Override
+	public List<Long> getIdsByCategory(String category) {
+		CriteriaBuilder builder = super.getSession().getCriteriaBuilder();
+		CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
+		
+		Root<Forecast> root = criteriaQuery.from(Forecast.class);
+		criteriaQuery.where(root.get("category").in(category));
+		criteriaQuery.select(root.get("id"));
+
+		return super.getSession().createQuery(criteriaQuery).getResultList();
 	}
 
 }

@@ -22,11 +22,8 @@ public class HoroscopeController {
 
 	@GetMapping("/sign/{sign}")
 	public ResponseEntity<String> getByType(@PathVariable("sign") String sign) {
-		String messaggio = "Boh, e io che ne so.";
-		if ("leone".equalsIgnoreCase(sign)) {
-			messaggio = this.forecastService.retrieveBySing(sign);
-		}
-		return ResponseEntity.ok(messaggio);
+		String result = this.forecastService.retrieveBySing(sign);
+		return ResponseEntity.ok(result);
 	}
 
 }
