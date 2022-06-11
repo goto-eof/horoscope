@@ -58,14 +58,13 @@ public class ForecastServiceImpl implements ForecastService {
 		// return those records, else we should generate them (I will change it in the
 		// future)
 		Date today = DateUtils.truncateDate(new Date());
-		boolean thereAre1 = this.forecastSignDao.thereAreRecordsForInterval(today, DateUtils.addDays(today, 1), new ArrayList<>());
-		boolean thereAre2 = this.forecastSignDao.thereAreRecordsForInterval(today, DateUtils.addDays(today, 1), HOROSCOPE_CATEGORIES);
+		boolean thereAre = this.forecastSignDao.thereAreRecordsForInterval(sign, today, DateUtils.addDays(today, 1), HOROSCOPE_CATEGORIES);
 
-		LOG.debug("thereAre1: {}, thereAre2: {}", thereAre1, thereAre2);
+		LOG.debug("thereAre: {}", thereAre);
 
-		if (thereAre1) {
+		if (thereAre) {
 			LOG.debug("I found some records, so that I will return them");
-			String result = retrievePhrases(today);
+			String result = retrievePhrases(sign, today);
 			return result;
 		}
 
@@ -85,16 +84,16 @@ public class ForecastServiceImpl implements ForecastService {
 
 		this.forecastSignDao.add(sign, randomIdHealt, randomIdLove, randomIdMoney);
 
-		String result = retrievePhrases(today);
+		String result = retrievePhrases(sign, today);
 
 		return result;
 	}
 
-	private String retrievePhrases(Date today) {
-		List<Forecast> forecasts = this.forecastSignDao.retrieveRecordsForInterval(today, DateUtils.addDays(today, 1), HOROSCOPE_CATEGORIES);
+	private String retrievePhrases(String sign, Date today) {
+		List<Forecast> forecasts = this.forecastSignDao.retrieveRecordsForInterval(sign, today, DateUtils.addDays(today, 1), HOROSCOPE_CATEGORIES);
 		StringBuilder sb = new StringBuilder();
 		for (Forecast forecast : forecasts) {
-			String key = this.env.getProperty("language") + ".categories." + forecast.getCategory();
+			String key = this.env.getProperty("horoscope.language") + ".categories." + forecast.getCategory();
 			String value = this.env.getProperty(key);
 			LOG.debug("KEY: [{}], VALUE: [{}]", key, value);
 			sb.append(value);
@@ -107,12 +106,15 @@ public class ForecastServiceImpl implements ForecastService {
 
 	private void validateSign(String sign) {
 		List<String> translatedSigns = new ArrayList<>();
-		String appLanguage = this.env.getProperty("language");
+		String appLanguage = this.env.getProperty("horoscope.language");
 		ZODIAC_SIGNS.forEach(signx -> {
-			translatedSigns.add(StringUtils.lowerCase(this.env.getProperty(appLanguage + ".signs." + signx)));
+			final String key = appLanguage + ".signs." + signx;
+			final String value = StringUtils.lowerCase(this.env.getProperty(key));
+			LOG.debug("KEY: [{}], VALUE: [{}]", key, value);
+			translatedSigns.add(value);
 		});
 		if (!translatedSigns.contains(StringUtils.lowerCase(sign))) {
-			throw new RuntimeException("Oooooops, badabuuuum!");
+			throw new RuntimeException("Oooooops, badabuuuum! " + sign + "|" + translatedSigns);
 		}
 	}
 

@@ -7,10 +7,10 @@ import org.andreidodu.horoscope.entities.Forecast;
 
 public interface ForecastSignDao {
 
-	boolean thereAreRecordsForInterval(Date startDate, Date endDate, List<String> categories);
+	boolean thereAreRecordsForInterval(String sign, Date startDate, Date endDate, List<String> categories);
 
 	public void add(String sign, Long... ids);
 
-	List<Forecast> retrieveRecordsForInterval(Date today, Date addDays, List<String> horoscopeCategories);
+	List<Forecast> retrieveRecordsForInterval(String sign, Date dateStart, Date dateEnd, List<String> horoscopeCategories);
 
 }

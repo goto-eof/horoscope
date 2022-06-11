@@ -15,13 +15,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import liquibase.repackaged.org.apache.commons.lang3.StringUtils;
+
 @Repository
 public class ForecastSignDaoImpl extends CommonDao implements ForecastSignDao {
 
 	private static final Logger LOG = LoggerFactory.getLogger(ForecastSignDaoImpl.class);
 
 	@Override
-	public boolean thereAreRecordsForInterval(Date startDate, Date endDate, List<String> categories) {
+	public boolean thereAreRecordsForInterval(String sign, Date startDate, Date endDate, List<String> categories) {
 
 		CriteriaBuilder builder = super.getSession().getCriteriaBuilder();
 		CriteriaQuery<Long> criteriaQuery = builder.createQuery(Long.class);
@@ -32,6 +34,7 @@ public class ForecastSignDaoImpl extends CommonDao implements ForecastSignDao {
 		if (categories != null && !categories.isEmpty()) {
 			criteriaQuery.where(root.join("forecast").get("category").in(categories));
 		}
+		criteriaQuery.where(root.join("sign").get("signName").in(StringUtils.lowerCase(sign)));
 		criteriaQuery.select(builder.count(root.get("id")));
 
 		TypedQuery<Long> query = super.getSession().createQuery(criteriaQuery);
@@ -64,17 +67,17 @@ public class ForecastSignDaoImpl extends CommonDao implements ForecastSignDao {
 	}
 
 	@Override
-	public List<Forecast> retrieveRecordsForInterval(Date startDate, Date endDate, List<String> categories) {
+	public List<Forecast> retrieveRecordsForInterval(String sign, Date dateStart, Date dateEnd, List<String> categories) {
 		CriteriaBuilder builder = super.getSession().getCriteriaBuilder();
 		CriteriaQuery<Forecast> criteriaQuery = builder.createQuery(Forecast.class);
 
 		Root<ForecastSign> root = criteriaQuery.from(ForecastSign.class);
-		criteriaQuery.where(builder.greaterThanOrEqualTo(root.get("forecastDate"), startDate));
-		criteriaQuery.where(builder.lessThan(root.get("forecastDate"), endDate));
+		criteriaQuery.where(builder.greaterThanOrEqualTo(root.get("forecastDate"), dateStart));
+		criteriaQuery.where(builder.lessThan(root.get("forecastDate"), dateEnd));
 		if (categories != null && !categories.isEmpty()) {
 			criteriaQuery.where(root.join("forecast").get("category").in(categories));
 		}
-
+		criteriaQuery.where(root.join("sign").get("signName").in(StringUtils.lowerCase(sign)));
 		criteriaQuery.select(root.get("forecast"));
 
 		TypedQuery<Forecast> query = super.getSession().createQuery(criteriaQuery);
