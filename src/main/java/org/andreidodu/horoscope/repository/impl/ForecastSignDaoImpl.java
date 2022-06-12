@@ -47,27 +47,30 @@ public class ForecastSignDaoImpl extends CommonDao implements ForecastSignDao {
 	}
 
 	@Override
-	public void generate(String sign, Long... ids) {
+	public void generate(String sign, Date validityDate, Long... ids) {
 
-		TypedQuery<Sign> querySign = super.getSession().createQuery("from Sign s where s.signName=:signName", Sign.class);
+		TypedQuery<Sign> querySign = super.getSession().createQuery("from Sign s where s.signName=:signName",
+				Sign.class);
 		querySign.setParameter("signName", sign);
 		Sign s = querySign.getSingleResult();
 
 		for (Long id : ids) {
 			ForecastSign fs = new ForecastSign();
-			TypedQuery<Forecast> queryForecast = super.getSession().createQuery("from Forecast f where f.id=:id", Forecast.class);
+			TypedQuery<Forecast> queryForecast = super.getSession().createQuery("from Forecast f where f.id=:id",
+					Forecast.class);
 			queryForecast.setParameter("id", id);
 			Forecast f = queryForecast.getSingleResult();
 			fs.setForecast(f);
 			fs.setSign(s);
-			fs.setForecastDate(new Date());
+			fs.setForecastDate(validityDate);
 			super.getSession().save(fs);
 		}
 
 	}
 
 	@Override
-	public List<Forecast> retrieveRecordsForInterval(String sign, Date dateStart, Date dateEnd, List<String> categories) {
+	public List<Forecast> retrieveRecordsForInterval(String sign, Date dateStart, Date dateEnd,
+			List<String> categories) {
 		CriteriaBuilder builder = super.getSession().getCriteriaBuilder();
 		CriteriaQuery<Forecast> criteriaQuery = builder.createQuery(Forecast.class);
 

@@ -29,7 +29,8 @@ public class ForecastServiceImpl implements ForecastService {
 	private static final String CATEGORY_LOVE = "love";
 	private static final String CATEGORY_MONEY = "money";
 
-	private static final List<String> HOROSCOPE_CATEGORIES = Arrays.asList(CATEGORY_HEALTH, CATEGORY_LOVE, CATEGORY_MONEY);
+	private static final List<String> HOROSCOPE_CATEGORIES = Arrays.asList(CATEGORY_HEALTH, CATEGORY_LOVE,
+			CATEGORY_MONEY);
 
 	@Autowired
 	private ForecastDao forecastDao;
@@ -55,7 +56,8 @@ public class ForecastServiceImpl implements ForecastService {
 		// return those records, else we should generate them (I will change it in the
 		// future)
 		Date today = DateUtils.truncateDate(new Date());
-		boolean thereAre = this.forecastSignDao.thereAreRecordsForInterval(sign, today, DateUtils.addDays(today, 1), HOROSCOPE_CATEGORIES);
+		boolean thereAre = this.forecastSignDao.thereAreRecordsForInterval(sign, today, DateUtils.addDays(today, 1),
+				HOROSCOPE_CATEGORIES);
 
 		LOG.debug("thereAre: {}", thereAre);
 
@@ -80,15 +82,17 @@ public class ForecastServiceImpl implements ForecastService {
 		LOG.debug("Love: {}", idsByCategoryLove.size());
 		LOG.debug("Money: {}", idsByCategoryMoney.size());
 
-		Long randomIdHealt = idsByCategoryHealth.get(ThreadLocalRandom.current().nextInt(0, idsByCategoryHealth.size()));
+		Long randomIdHealt = idsByCategoryHealth
+				.get(ThreadLocalRandom.current().nextInt(0, idsByCategoryHealth.size()));
 		Long randomIdLove = idsByCategoryLove.get(ThreadLocalRandom.current().nextInt(0, idsByCategoryLove.size()));
 		Long randomIdMoney = idsByCategoryMoney.get(ThreadLocalRandom.current().nextInt(0, idsByCategoryMoney.size()));
 
-		this.forecastSignDao.generate(sign, randomIdHealt, randomIdLove, randomIdMoney);
+		this.forecastSignDao.generate(sign, new Date(), randomIdHealt, randomIdLove, randomIdMoney);
 	}
 
 	private String retrievePhrases(String sign, Date today) {
-		List<Forecast> forecasts = this.forecastSignDao.retrieveRecordsForInterval(sign, today, DateUtils.addDays(today, 1), HOROSCOPE_CATEGORIES);
+		List<Forecast> forecasts = this.forecastSignDao.retrieveRecordsForInterval(sign, today,
+				DateUtils.addDays(today, 1), HOROSCOPE_CATEGORIES);
 		StringBuilder sb = new StringBuilder();
 		for (Forecast forecast : forecasts) {
 			String key = this.env.getProperty("horoscope.language") + ".categories." + forecast.getCategory();
