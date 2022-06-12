@@ -9,7 +9,7 @@ public class HomeController {
 
 	@GetMapping
 	public ResponseEntity<String> getHome() {
-		return ResponseEntity.ok("HOME");
+		return ResponseEntity.ok("Haloa!");
 	}
 
 }

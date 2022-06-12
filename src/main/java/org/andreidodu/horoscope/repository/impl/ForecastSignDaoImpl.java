@@ -1,4 +1,4 @@
-package org.andreidodu.horoscope.repository;
+package org.andreidodu.horoscope.repository.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +11,8 @@ import javax.persistence.criteria.Root;
 import org.andreidodu.horoscope.entities.Forecast;
 import org.andreidodu.horoscope.entities.ForecastSign;
 import org.andreidodu.horoscope.entities.Sign;
+import org.andreidodu.horoscope.repository.CommonDao;
+import org.andreidodu.horoscope.repository.ForecastSignDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -47,7 +49,7 @@ public class ForecastSignDaoImpl extends CommonDao implements ForecastSignDao {
 	}
 
 	@Override
-	public void add(String sign, Long... ids) {
+	public void generate(String sign, Long... ids) {
 
 		TypedQuery<Sign> querySign = super.getSession().createQuery("from Sign s where s.signName=:signName", Sign.class);
 		querySign.setParameter("signName", sign);

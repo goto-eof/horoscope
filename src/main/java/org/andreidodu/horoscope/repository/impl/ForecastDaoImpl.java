@@ -1,4 +1,4 @@
-package org.andreidodu.horoscope.repository;
+package org.andreidodu.horoscope.repository.impl;
 
 import java.util.List;
 
@@ -8,6 +8,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.andreidodu.horoscope.entities.Forecast;
+import org.andreidodu.horoscope.repository.CommonDao;
+import org.andreidodu.horoscope.repository.ForecastDao;
 import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
