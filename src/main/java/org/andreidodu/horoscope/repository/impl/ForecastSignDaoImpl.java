@@ -11,7 +11,6 @@ import javax.persistence.criteria.Root;
 import org.andreidodu.horoscope.entities.Forecast;
 import org.andreidodu.horoscope.entities.ForecastSign;
 import org.andreidodu.horoscope.entities.Sign;
-import org.andreidodu.horoscope.repository.CommonDao;
 import org.andreidodu.horoscope.repository.ForecastSignDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

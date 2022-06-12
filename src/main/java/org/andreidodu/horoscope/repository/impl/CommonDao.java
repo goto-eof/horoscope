@@ -1,4 +1,4 @@
-package org.andreidodu.horoscope.repository;
+package org.andreidodu.horoscope.repository.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
