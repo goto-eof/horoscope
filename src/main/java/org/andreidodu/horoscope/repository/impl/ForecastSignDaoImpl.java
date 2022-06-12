@@ -12,11 +12,10 @@ import org.andreidodu.horoscope.entities.Forecast;
 import org.andreidodu.horoscope.entities.ForecastSign;
 import org.andreidodu.horoscope.entities.Sign;
 import org.andreidodu.horoscope.repository.ForecastSignDao;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
-
-import liquibase.repackaged.org.apache.commons.lang3.StringUtils;
 
 @Repository
 public class ForecastSignDaoImpl extends CommonDao implements ForecastSignDao {
