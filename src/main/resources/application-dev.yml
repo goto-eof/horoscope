@@ -3,7 +3,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/horoscope?useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Rome
     username: horoscope
-    password: password
+    password: horoscope
   liquibase:
     change-log: classpath:/database/db.changelog.xml
   jpa:
