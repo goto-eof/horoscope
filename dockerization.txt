@@ -1,0 +1,5 @@
+# go to root directory
+docker build --tag=horoscope:latest .
+
+# run container
+docker run -p8080:8080 --network=host horoscope:latest
