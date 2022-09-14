@@ -1,6 +1,6 @@
 # horoscope
 A complete horoscope web service that I written, which will be integrated with alexa. The application provides an REST API.
-I used Spring Boot, liquibase, Hibernate and MySQL.
+I used Spring Boot, spring data jpa, Hibernate and MySQL.
 
 In order to run it, make a maven clean install and then run as Spring Boot application. 
 
