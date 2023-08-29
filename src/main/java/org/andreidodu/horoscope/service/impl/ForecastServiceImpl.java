@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import javax.transaction.Transactional;
@@ -77,10 +78,10 @@ public class ForecastServiceImpl implements ForecastService {
     public List<SignDTO> retrieveAllSigns() {
         return StreamSupport
                 .stream(this.signDao.findAll().spliterator(), false)
-                .toList()
+                .collect(Collectors.toList())
                 .stream()
                 .map(signMapper::toDTO)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     private void generatePhrases(String sign) {
@@ -104,7 +105,7 @@ public class ForecastServiceImpl implements ForecastService {
         List<Forecast> forecasts = this.forecastSignDao.retrieveRecordsForInterval(sign, today,
                 DateUtils.addDays(today, 1), HOROSCOPE_CATEGORIES);
         ForecastDTO forecastDTO = ForecastDTO.builder().sign(sign).build();
-        forecastDTO.setForecasts(forecasts.stream().map(forecast -> ForecastByCategoryDTO.builder().category(forecast.getCategory()).rating(forecast.getRaing()).forecast(forecast.getPhrase()).build()).toList());
+        forecastDTO.setForecasts(forecasts.stream().map(forecast -> ForecastByCategoryDTO.builder().category(forecast.getCategory()).rating(forecast.getRaing()).forecast(forecast.getPhrase()).build()).collect(Collectors.toList()));
         return forecastDTO;
     }
 

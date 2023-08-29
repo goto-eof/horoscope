@@ -7,5 +7,3 @@ In order to run it, make a maven clean install and then run as Spring Boot appli
 Then call the endpoint with postman to retrieve some informations: http://localhost:8080/horoscope/sign/${YOUR_SIGN}
 
 ~~[For further information, see my blog](http://dodu.it/?page_id=516)~~
-
-~~P.S. don't forget to install lombok in your eclipse~~

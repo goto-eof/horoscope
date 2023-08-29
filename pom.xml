@@ -14,7 +14,7 @@
     <name>horoscope</name>
     <description>My horoscope</description>
     <properties>
-        <java.version>19</java.version>
+        <java.version>11</java.version>
         <filename>horoscope</filename>
         <org.projectlombok.version>1.18.20</org.projectlombok.version>
         <dozer.version>5.5.1</dozer.version>
