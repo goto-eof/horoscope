@@ -10,8 +10,15 @@
 			<column autoIncrement="${autoIncrement}" name="tc001_forecast_seq" type="BIGINT">
 				<constraints nullable="false" primaryKey="true"	primaryKeyName="pk_tc001_forecast_seq" />
 			</column>
-			<column name="tc001_phrase" type="VARCHAR(1024)"/>
-			<column name="tc001_category" type="VARCHAR(255)"/>
+			<column name="tc001_phrase" type="VARCHAR(1024)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="tc001_rating" type="INT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="tc001_category" type="VARCHAR(255)">
+				<constraints nullable="false"/>
+			</column>
 			<column name="tc001_insert_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}" />
 			<column name="tc001_update_date" type="DATETIME" defaultValueComputed="${defaultTimestamp}" />				
 			<column name="tc001_version" type="INT" />

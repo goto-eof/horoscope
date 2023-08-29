@@ -30,8 +30,8 @@ public class HoroscopeController {
     }
 
     @GetMapping("/sign/{sign}")
-    public ResponseEntity<String> getBySign(@PathVariable("sign") String sign) {
-        String result = this.forecastService.retrieveBySing(sign);
+    public ResponseEntity<ForecastDTO> getBySign(@PathVariable("sign") String sign) {
+        ForecastDTO result = this.forecastService.retrieveBySing(sign);
         return ResponseEntity.ok(result);
     }
 

@@ -4,15 +4,15 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import javax.transaction.Transactional;
 
 import lombok.AllArgsConstructor;
+import org.andreidodu.horoscope.dto.ForecastByCategoryDTO;
+import org.andreidodu.horoscope.dto.ForecastDTO;
 import org.andreidodu.horoscope.dto.SignDTO;
 import org.andreidodu.horoscope.entities.Forecast;
-import org.andreidodu.horoscope.entities.Sign;
 import org.andreidodu.horoscope.mapper.SignMapper;
 import org.andreidodu.horoscope.repository.ForecastDao;
 import org.andreidodu.horoscope.repository.ForecastSignDao;
@@ -47,7 +47,7 @@ public class ForecastServiceImpl implements ForecastService {
     final private SignMapper signMapper;
 
     @Override
-    public String retrieveBySing(String sign) {
+    public ForecastDTO retrieveBySing(String sign) {
 
         boolean validationResult = this.signUtil.validateSign(sign);
         if (!validationResult) {
@@ -65,14 +65,12 @@ public class ForecastServiceImpl implements ForecastService {
 
         if (thereAre) {
             LOG.debug("I found some records, so that I will return them");
-            String result = retrievePhrases(sign, today);
-            return result;
+            return retrieveForecast(sign, today);
         }
 
         LOG.debug("I did not found records, so that I will generate and return them");
         generatePhrases(sign);
-        String result = retrievePhrases(sign, today);
-        return result;
+        return retrieveForecast(sign, today);
     }
 
     @Override
@@ -102,20 +100,12 @@ public class ForecastServiceImpl implements ForecastService {
         this.forecastSignDao.generate(sign, new Date(), randomIdHealt, randomIdLove, randomIdMoney);
     }
 
-    private String retrievePhrases(String sign, Date today) {
+    private ForecastDTO retrieveForecast(String sign, Date today) {
         List<Forecast> forecasts = this.forecastSignDao.retrieveRecordsForInterval(sign, today,
                 DateUtils.addDays(today, 1), HOROSCOPE_CATEGORIES);
-        StringBuilder sb = new StringBuilder();
-        for (Forecast forecast : forecasts) {
-            String key = this.env.getProperty("horoscope.language") + ".categories." + forecast.getCategory();
-            String value = this.env.getProperty(key);
-            LOG.debug("KEY: [{}], VALUE: [{}]", key, value);
-            sb.append(value);
-            sb.append(": ");
-            sb.append(forecast.getPhrase());
-            sb.append(" ");
-        }
-        return sb.toString();
+        ForecastDTO forecastDTO = ForecastDTO.builder().sign(sign).build();
+        forecastDTO.setForecasts(forecasts.stream().map(forecast -> ForecastByCategoryDTO.builder().category(forecast.getCategory()).rating(forecast.getRaing()).forecast(forecast.getPhrase()).build()).toList());
+        return forecastDTO;
     }
 
 }

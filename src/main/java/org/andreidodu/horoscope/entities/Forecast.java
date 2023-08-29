@@ -44,6 +44,9 @@ public class Forecast extends TableCommons implements Serializable {
 	@Column(name = "tc001_phrase", nullable = false)
 	private String phrase;
 
+	@Column(name = "tc001_rating", nullable = false)
+	private Integer raing;
+
 	@Column(name = "tc001_category", length = 255, nullable = false)
 	private String category;
 

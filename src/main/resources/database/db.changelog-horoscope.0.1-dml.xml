@@ -1,121 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
-	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
-	
-	<changeSet  author="Andrei Dodu"  id="first_insert"  dbms="${dbms}">
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Farai persino qualche esercizio fisico."/>
-	        <column  name="tc001_category"  value="health"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>  	
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Morirai anche tu."/>
-	        <column  name="tc001_category"  value="health"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>  
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Ti prenderai un raffreddore."/>
-	        <column  name="tc001_category"  value="health"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>       
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Ti farà male un dito."/>
-	        <column  name="tc001_category"  value="health"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>  
-	    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Forse ti andrà bene in amore."/>
-	        <column  name="tc001_category"  value="love"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>       
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Incontrerai l'amore della tua vita al bar degli alcolizzati."/>
-	        <column  name="tc001_category"  value="love"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>           
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Non rimorcherai, questo è certo."/>
-	        <column  name="tc001_category"  value="love"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>   
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Non ti si filerà nemmeno la tua ombra."/>
-	        <column  name="tc001_category"  value="love"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>            
-		
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Ce la farai (forse)."/>
-	        <column  name="tc001_category"  value="money"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>  
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Qualcuno ti darà 20 euro."/>
-	        <column  name="tc001_category"  value="money"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>  
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Vincerai 5 euro al superenalotto."/>
-	        <column  name="tc001_category"  value="money"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>       
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">  
-	        <column  name="tc001_phrase"  value="Morirai di fame."/>
-	        <column  name="tc001_category"  value="money"/>
-			<column name="tc001_active" valueBoolean="true"/>	        
-	    </insert>      
-	    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="ariete"/>
-			<column name="tp001_active" valueBoolean="true"/>
-	    </insert>    	    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="toro"/>
-			<column name="tp001_active" valueBoolean="true"/>	        
-	    </insert>    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="gemelli"/>
-			<column name="tp001_active" valueBoolean="true"/>	        
-	    </insert>    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="cancro"/>
-			<column name="tp001_active" valueBoolean="true"/>	        
-	    </insert>    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="leone"/>
-			<column name="tp001_active" valueBoolean="true"/>	        
-	    </insert>    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="vergine"/>
-			<column name="tp001_active" valueBoolean="true"/>	        
-	    </insert>    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="bilancia"/>
-	        <column name="tp001_active" valueBoolean="true"/>	        
-	    </insert>    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="scorpione"/>
-			<column name="tp001_active" valueBoolean="true"/>	        
-	    </insert>    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="sagittario"/>
-			<column name="tp001_active" valueBoolean="true"/>	        
-	    </insert>    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="capricorno"/>
-			<column name="tp001_active" valueBoolean="true"/>	        
-	    </insert>    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="acquario"/>
-			<column name="tp001_active" valueBoolean="true"/>	        
-	    </insert>    
-	    <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">  
-	        <column  name="tp001_sign_name"  value="pesci"/>
-			<column name="tp001_active" valueBoolean="true"/>	        
-	    </insert>    	    	    	    	    	    	    	    	    	    	    	      
-</changeSet>
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="Andrei Dodu" id="first_insert" dbms="${dbms}">
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Farai persino qualche esercizio fisico."/>
+            <column name="tc001_rating" value="10"/>
+            <column name="tc001_category" value="health"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Morirai anche tu."/>
+            <column name="tc001_rating" value="1"/>
+            <column name="tc001_category" value="health"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Ti prenderai un raffreddore."/>
+            <column name="tc001_rating" value="3"/>
+            <column name="tc001_category" value="health"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Ti farà male un dito."/>
+            <column name="tc001_rating" value="1"/>
+            <column name="tc001_category" value="health"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Forse ti andrà bene in amore."/>
+            <column  name="tc001_rating"  value="7"/>
+            <column name="tc001_category" value="love"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Incontrerai l'amore della tua vita al bar degli alcolizzati."/>
+            <column  name="tc001_rating"  value="10"/>
+            <column name="tc001_category" value="love"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Non rimorcherai, questo è certo."/>
+            <column  name="tc001_rating"  value="2"/>
+            <column name="tc001_category" value="love"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Non ti si filerà nemmeno la tua ombra."/>
+            <column  name="tc001_rating"  value="1"/>
+            <column name="tc001_category" value="love"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Ce la farai (forse)."/>
+            <column  name="tc001_rating"  value="5"/>
+            <column name="tc001_category" value="money"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Qualcuno ti darà 20 euro."/>
+            <column  name="tc001_rating"  value="10"/>
+            <column name="tc001_category" value="money"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Vincerai 1 euro al superenalotto."/>
+            <column  name="tc001_rating"  value="10"/>
+            <column name="tc001_category" value="money"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tc001_forecast">
+            <column name="tc001_phrase" value="Morirai di fame."/>
+            <column  name="tc001_rating"  value="1"/>
+            <column name="tc001_category" value="money"/>
+            <column name="tc001_active" valueBoolean="true"/>
+        </insert>
+
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="ariete"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="toro"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="gemelli"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="cancro"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="leone"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="vergine"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="bilancia"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="scorpione"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="sagittario"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="capricorno"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="acquario"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+        <insert catalogName="${schemaName}" dbms="${dbms}" schemaName="${schemaName}" tableName="tp001_sign">
+            <column name="tp001_sign_name" value="pesci"/>
+            <column name="tp001_active" valueBoolean="true"/>
+        </insert>
+    </changeSet>
 
 </databaseChangeLog>
